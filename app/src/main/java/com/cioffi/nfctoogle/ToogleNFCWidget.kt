@@ -2,6 +2,7 @@ package com.cioffi.nfctoogle
 
 import android.content.Context
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.glance.Button
 import androidx.glance.GlanceId
@@ -20,17 +21,12 @@ class ToogleNFCWidget : GlanceAppWidget() {
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
 
-        // In this method, load data needed to render the AppWidget.
-        // Use `withContext` to switch to another thread for long running
-        // operations.
-
         provideContent {
-            // create your AppWidget here
-            Text("Hello World")
+            MyContent()
         }
     }
 
-
+    @Preview
     @Composable
     private fun MyContent() {
         Column(

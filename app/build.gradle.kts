@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.cioffi.nfctoogle"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.cioffi.nfctoogle"
@@ -66,4 +66,14 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    // For AppWidgets support
+    implementation ("androidx.glance:glance-appwidget:1.0.0")
+
+    // For interop APIs with Material 2
+    implementation ("androidx.glance:glance-material:1.0.0")
+
+    // For interop APIs with Material 3
+    implementation( "androidx.glance:glance-material3:1.0.0")
+
 }

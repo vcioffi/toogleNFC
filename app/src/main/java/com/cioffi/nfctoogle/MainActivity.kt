@@ -34,6 +34,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Preview() {
     NFCToogleTheme {
-        ToogleNFCWidget().MyContent()
+       // ToogleNFCWidget().MyContent()
     }
 }

@@ -29,9 +29,9 @@ class ToogleNFCWidget : GlanceAppWidget() {
                 nfcStatus = nfcStatus ?: true
             )
 
-            NFCToogleTheme(darkTheme = context.darkModeEnabled()) {
+           // NFCToogleTheme(darkTheme = context.darkModeEnabled()) {
                 NFCWidget()
-            }
+           // }
         }
     }
 

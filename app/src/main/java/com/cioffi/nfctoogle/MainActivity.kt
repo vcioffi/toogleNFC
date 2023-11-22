@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.cioffi.nfctoogle.ui.theme.NFCToogleTheme
 
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+/*    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             NFCToogleTheme {
@@ -26,9 +26,10 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
+    }*/
 }
 
+/*
 
 @Preview(showBackground = true)
 @Composable
@@ -36,4 +37,4 @@ fun Preview() {
     NFCToogleTheme {
        // ToogleNFCWidget().MyContent()
     }
-}
+}*/

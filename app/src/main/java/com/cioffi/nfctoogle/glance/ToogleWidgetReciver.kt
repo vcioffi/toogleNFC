@@ -1,9 +1,11 @@
 package com.cioffi.nfctoogle.glance
 
+import NFCToogleRefreshCallback
 import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
 import android.nfc.NfcAdapter
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -14,7 +16,6 @@ import androidx.glance.appwidget.GlanceAppWidgetReceiver
 import androidx.glance.appwidget.state.updateAppWidgetState
 import androidx.glance.state.PreferencesGlanceStateDefinition
 import com.cioffi.nfctoogle.ToogleNFCWidget
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
@@ -29,8 +30,10 @@ class ToogleWidgetReciver : GlanceAppWidgetReceiver() {
     private fun observeData(context: Context) {
         coroutineScope.launch {
 
-/*             var nfcAdapter: NfcAdapter? = null
-             var isNFCOn by mutableStateOf(!nfcAdapter!!.isEnabled)*/
+            val nfcAdpt = NfcAdapter.getDefaultAdapter(context)
+            Log.v("Test2", "nfcAdpt:  ${nfcAdpt}")
+            var isNFCOn by mutableStateOf(nfcAdpt.isEnabled())
+            Log.v("Test2", "Is NFC:  ${isNFCOn}")
 
 
             val glanceId =
@@ -39,7 +42,7 @@ class ToogleWidgetReciver : GlanceAppWidgetReceiver() {
             glanceId?.let {
                 updateAppWidgetState(context, PreferencesGlanceStateDefinition, it) { pref ->
                     pref.toMutablePreferences().apply {
-                        this[nfcStatus] = true
+                        this[nfcStatus] = isNFCOn
                     }
                 }
                 glanceAppWidget.update(context, it)

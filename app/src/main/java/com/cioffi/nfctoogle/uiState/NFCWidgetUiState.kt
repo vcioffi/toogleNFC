@@ -1,6 +1,11 @@
 package com.cioffi.nfctoogle.uiState
 
-class NFCWidgetUiState (val nfcStatus: Boolean = true) {
+import android.nfc.NfcAdapter
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 
+
+class NFCWidgetUiState () {
 
 }

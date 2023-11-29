@@ -11,7 +11,6 @@ import androidx.glance.state.PreferencesGlanceStateDefinition
 import com.cioffi.nfctoogle.glance.ToogleWidgetReciver
 import com.cioffi.nfctoogle.layout.NFCWidget
 import com.cioffi.nfctoogle.ui.theme.NFCToogleTheme
-import com.cioffi.nfctoogle.uiState.NFCWidgetUiState
 import com.mertceyhan.bitcoinmarket.utils.extensions.darkModeEnabled
 
 
@@ -25,12 +24,8 @@ class ToogleNFCWidget : GlanceAppWidget() {
             val prefs = currentState<Preferences>()
             val nfcStatus = prefs[ToogleWidgetReciver.nfcStatus]
 
-            val nfcWidgetState = NFCWidgetUiState(
-                nfcStatus = nfcStatus ?: true
-            )
-
             NFCToogleTheme(darkTheme = context.darkModeEnabled()) {
-                NFCWidget(nfcWidgetState,context)
+                NFCWidget(nfcStatus!!,context)
             }
         }
     }

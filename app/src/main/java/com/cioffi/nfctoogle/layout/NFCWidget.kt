@@ -26,19 +26,27 @@ fun NFCWidget(nfcWidgetState: Boolean, context: Context) {
         modifier = GlanceModifier
             .fillMaxSize()
             .background(
-            ImageProvider(R.drawable.background_widget_negative_rate)),
-            verticalAlignment = Alignment.Top,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Row(horizontalAlignment = Alignment.CenterHorizontally) {
-                Image(
-                    provider = ImageProvider(R.drawable.nfc_icon),
-                    contentDescription = "Refresh",
-                    modifier = GlanceModifier.clickable(actionRunCallback<NFCToogleRefreshCallback>()),
-                    colorFilter = ColorFilter.tint(UtilsMethods.getColorforNFCStatus(nfcWidgetState))
-                )
-            }
+                ImageProvider(R.drawable.background_widget_negative_rate)
+            ),
+        verticalAlignment = Alignment.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Row(horizontalAlignment = Alignment.CenterHorizontally, verticalAlignment = Alignment.CenterVertically) {
+            Image(
+                provider = ImageProvider(R.drawable.outline_power_settings_new_15),
+                contentDescription = "Open Setting",
+                modifier = GlanceModifier.clickable(actionRunCallback<NFCToogleRefreshCallback>()),
+            )
         }
+        Row(horizontalAlignment = Alignment.CenterHorizontally) {
+            Image(
+                provider = ImageProvider(R.drawable.nfc_icon),
+                contentDescription = "Refresh",
+                modifier = GlanceModifier.clickable(actionRunCallback<NFCToogleRefreshCallback>()),
+                colorFilter = ColorFilter.tint(UtilsMethods.getColorforNFCStatus(nfcWidgetState))
+            )
+        }
+    }
 }
 
 

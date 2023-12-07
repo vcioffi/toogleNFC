@@ -16,6 +16,7 @@ import androidx.glance.appwidget.GlanceAppWidgetReceiver
 import androidx.glance.appwidget.state.updateAppWidgetState
 import androidx.glance.state.PreferencesGlanceStateDefinition
 import com.cioffi.nfctoogle.ToogleNFCWidget
+import com.example.android.appwidget.glance.weather.NFCWorkManager
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
@@ -56,7 +57,19 @@ class ToogleWidgetReciver : GlanceAppWidgetReceiver() {
         appWidgetIds: IntArray
     ) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
+        Log.v("Test2", "On Update in Reciver")
         observeData(context)
+    }
+
+    override fun onEnabled(context: Context) {
+        super.onEnabled(context)
+        NFCWorkManager.enqueue(context,true)
+
+    }
+
+    override fun onDisabled(context: Context) {
+        super.onDisabled(context)
+        NFCWorkManager.cancel(context)
     }
 
     override fun onReceive(context: Context, intent: Intent) {

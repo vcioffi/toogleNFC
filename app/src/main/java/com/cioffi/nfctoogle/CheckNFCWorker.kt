@@ -27,9 +27,7 @@ private const val  TAG = "Test Worker"
     override suspend fun doWork(): Result {
 
         val nfcAdpt = NfcAdapter.getDefaultAdapter(context)
-        Log.v(TAG, "nfcAdpt:  ${nfcAdpt}")
         var isNFCOn by mutableStateOf(nfcAdpt.isEnabled())
-        Log.v(TAG, "Is NFC:  ${isNFCOn}")
 
         if(isNFCOn) {
             makeStatusNotification(

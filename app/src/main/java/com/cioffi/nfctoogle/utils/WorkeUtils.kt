@@ -21,7 +21,7 @@ fun makeStatusNotification(message: String, context: Context) {
     //intent for notification action
     val intentNfcAcxtion = Intent(Settings.ACTION_NFC_SETTINGS)
     intentNfcAcxtion.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    var pintentNfcAcxtion = PendingIntent.getBroadcast(context, 0, intentNfcAcxtion,
+    var pintentNfcAcxtion = PendingIntent.getActivity(context, 0, intentNfcAcxtion,
         PendingIntent.FLAG_IMMUTABLE)
 
     // Make a channel if necessary
@@ -41,6 +41,7 @@ fun makeStatusNotification(message: String, context: Context) {
         notificationManager?.createNotificationChannel(channel)
     }
 
+    val action : NotificationCompat.Action = NotificationCompat.Action(R.drawable.nfc_icon,"Turn OFF driving mode", pintentNfcAcxtion)
     // Create the notification
     val builder = NotificationCompat.Builder(context, "CHANNEL_ID")
         .setSmallIcon(R.drawable.nfc_icon)
@@ -48,7 +49,7 @@ fun makeStatusNotification(message: String, context: Context) {
         .setContentText(message)
         .setPriority(NotificationCompat.PRIORITY_HIGH)
         .setVibrate(LongArray(0))
-        .addAction(R.drawable.nfc_icon, "Turn OFF driving mode", pintentNfcAcxtion)
+        .addAction(action)
 
     // Show the notification
     if (ActivityCompat.checkSelfPermission(

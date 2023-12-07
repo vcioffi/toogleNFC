@@ -38,9 +38,7 @@ class ToogleWidgetReciver : GlanceAppWidgetReceiver() {
         coroutineScope.launch {
 
             val nfcAdpt = NfcAdapter.getDefaultAdapter(context)
-            Log.v("Test2", "nfcAdpt:  ${nfcAdpt}")
             var isNFCOn by mutableStateOf(nfcAdpt.isEnabled())
-            Log.v("Test2", "Is NFC:  ${isNFCOn}")
 
             scheduleNFCWorker(context)
             val glanceId =
@@ -90,7 +88,7 @@ class ToogleWidgetReciver : GlanceAppWidgetReceiver() {
 
         workManager.enqueueUniquePeriodicWork(
             "NFC_CONTROLLER",
-            ExistingPeriodicWorkPolicy.KEEP,
+            ExistingPeriodicWorkPolicy.CANCEL_AND_REENQUEUE,
             request
         )
     }

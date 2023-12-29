@@ -14,10 +14,17 @@ import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.GlanceAppWidgetManager
 import androidx.glance.appwidget.GlanceAppWidgetReceiver
 import androidx.glance.appwidget.state.updateAppWidgetState
+import androidx.glance.appwidget.updateAll
 import androidx.glance.state.PreferencesGlanceStateDefinition
+import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
+import com.cioffi.nfctoogle.CheckNFCWorker
 import com.cioffi.nfctoogle.ToogleNFCWidget
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 
 
 class ToogleWidgetReciver : GlanceAppWidgetReceiver() {
@@ -35,7 +42,7 @@ class ToogleWidgetReciver : GlanceAppWidgetReceiver() {
             var isNFCOn by mutableStateOf(nfcAdpt.isEnabled())
             Log.v("Test2", "Is NFC:  ${isNFCOn}")
 
-
+            scheduleNFCWorker(context)
             val glanceId =
                 GlanceAppWidgetManager(context).getGlanceIds(ToogleNFCWidget::class.java).firstOrNull()
 
@@ -66,8 +73,26 @@ class ToogleWidgetReciver : GlanceAppWidgetReceiver() {
         }
     }
 
+
+
     companion object {
-        val nfcStatus = booleanPreferencesKey("nfcStatus")
+        val nfcStatus = booleanPreferencesKey("nfc_status")
+    }
+
+    fun scheduleNFCWorker(context: Context) {
+
+        val workManager = WorkManager.getInstance(context)
+
+
+        val request: PeriodicWorkRequest = PeriodicWorkRequest.Builder(
+            CheckNFCWorker::class.java, 15, TimeUnit.MINUTES, 15, TimeUnit.MINUTES)
+            .build()
+
+        workManager.enqueueUniquePeriodicWork(
+            "NFC_CONTROLLER",
+            ExistingPeriodicWorkPolicy.KEEP,
+            request
+        )
     }
 
 }

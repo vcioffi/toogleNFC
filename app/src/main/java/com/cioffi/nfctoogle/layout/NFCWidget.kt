@@ -3,9 +3,10 @@ package com.cioffi.nfctoogle.layout;
 
 import NFCToogleRefreshCallback
 import android.content.Context
+import android.content.Intent
+import android.provider.Settings
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
-import com.cioffi.nfctoogle.ui.theme.purple200
+import androidx.core.content.ContextCompat.startActivity
 import androidx.glance.ColorFilter
 import androidx.glance.GlanceModifier
 import androidx.glance.Image
@@ -18,7 +19,14 @@ import androidx.glance.layout.Alignment
 import androidx.glance.layout.Column
 import androidx.glance.layout.Row
 import androidx.glance.layout.fillMaxSize
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequest
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
+import com.cioffi.nfctoogle.CheckNFCWorker
 import com.cioffi.nfctoogle.utils.UtilsMethods
+import java.util.concurrent.TimeUnit
 
 @Composable
 fun NFCWidget(nfcWidgetState: Boolean, context: Context) {
@@ -34,11 +42,37 @@ fun NFCWidget(nfcWidgetState: Boolean, context: Context) {
                 Image(
                     provider = ImageProvider(R.drawable.nfc_icon),
                     contentDescription = "Refresh",
-                    modifier = GlanceModifier.clickable(actionRunCallback<NFCToogleRefreshCallback>()),
+                    modifier = GlanceModifier.clickable({
+                        openNFC(context)
+                    }),
                     colorFilter = ColorFilter.tint(UtilsMethods.getColorforNFCStatus(nfcWidgetState))
                 )
             }
         }
 }
+
+
+fun openNFC(context: Context){
+
+    val workManager = WorkManager.getInstance(context)
+
+    val onTimeDailyWorker = OneTimeWorkRequest
+        .Builder(CheckNFCWorker::class.java)
+        .setInitialDelay(3, TimeUnit.SECONDS)
+        .build()
+
+    workManager.enqueueUniqueWork(
+        "NFC_CONTROLLER_SINGLE",
+        ExistingWorkPolicy.KEEP,
+        onTimeDailyWorker
+    )
+
+
+    val intent = Intent(Settings.ACTION_NFC_SETTINGS)
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(context,intent,null)
+
+}
+
 
 

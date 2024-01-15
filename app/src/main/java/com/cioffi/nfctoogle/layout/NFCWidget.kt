@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.provider.Settings
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.startActivity
 import androidx.glance.ColorFilter
 import androidx.glance.GlanceModifier
@@ -18,7 +19,9 @@ import androidx.glance.background
 import androidx.glance.layout.Alignment
 import androidx.glance.layout.Column
 import androidx.glance.layout.Row
+import androidx.glance.layout.Spacer
 import androidx.glance.layout.fillMaxSize
+import androidx.glance.layout.height
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequest
@@ -38,9 +41,10 @@ fun NFCWidget(nfcWidgetState: Boolean, context: Context) {
             verticalAlignment = Alignment.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Row(horizontalAlignment = Alignment.CenterHorizontally) {
+
+            Row(verticalAlignment = Alignment.Top) {
                 Image(
-                    provider = ImageProvider(R.drawable.nfc_icon),
+                    provider = ImageProvider(R.drawable.ic_launcher_foreground),
                     contentDescription = "Refresh",
                     modifier = GlanceModifier.clickable({
                         openNFC(context)
@@ -48,6 +52,12 @@ fun NFCWidget(nfcWidgetState: Boolean, context: Context) {
                     colorFilter = ColorFilter.tint(UtilsMethods.getColorforNFCStatus(nfcWidgetState))
                 )
             }
+        Image(
+            provider = ImageProvider(R.drawable.ic_refresh),
+            contentDescription = "Refresh",
+            modifier = GlanceModifier.clickable(actionRunCallback<NFCToogleRefreshCallback>())
+        )
+
         }
 }
 

@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -70,6 +72,9 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation("androidx.compose.material:material:1.1.0-beta02")
     implementation("com.google.android.material:material:1.4.0")
+
+    // WorkManager dependency
+    implementation("androidx.work:work-runtime-ktx:2.8.1")
 
     // For AppWidgets support
     implementation("androidx.glance:glance:1.0.0")

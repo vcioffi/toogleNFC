@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -59,6 +61,8 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.glance:glance-appwidget:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -66,14 +70,14 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation("androidx.compose.material:material:1.1.0-beta02")
+    implementation("com.google.android.material:material:1.4.0")
+
+    // WorkManager dependency
+    implementation("androidx.work:work-runtime-ktx:2.8.1")
 
     // For AppWidgets support
-    implementation ("androidx.glance:glance-appwidget:1.0.0")
+    implementation("androidx.glance:glance:1.0.0")
 
-    // For interop APIs with Material 2
-    implementation ("androidx.glance:glance-material:1.0.0")
-
-    // For interop APIs with Material 3
-    implementation( "androidx.glance:glance-material3:1.0.0")
 
 }

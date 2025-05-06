@@ -1,4 +1,4 @@
-package com.cioffi.nfctoogle.utils
+package com.cioffi.nfctoggle.utils
 
 import android.Manifest
 import android.app.NotificationChannel
@@ -13,7 +13,7 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.cioffi.nfctoogle.R
+import com.cioffi.nfctoggle.R
 
 
 fun makeStatusNotification(message: String, context: Context) {

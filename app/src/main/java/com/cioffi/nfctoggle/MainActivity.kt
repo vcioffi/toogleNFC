@@ -1,4 +1,4 @@
-package com.cioffi.nfctoogle
+package com.cioffi.nfctoggle
 
 import android.content.Context
 import android.os.Bundle

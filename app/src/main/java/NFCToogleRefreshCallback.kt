@@ -3,9 +3,9 @@ import android.content.Intent
 import androidx.glance.GlanceId
 import androidx.glance.action.ActionParameters
 import androidx.glance.appwidget.action.ActionCallback
-import com.cioffi.nfctoogle.glance.ToogleWidgetReciver
+import com.cioffi.nfctoggle.glance.ToggleWidgetReciver
 
-class NFCToogleRefreshCallback  : ActionCallback  {
+class NFCToggleRefreshCallback  : ActionCallback  {
 
     companion object {
         const val UPDATE_ACTION = "updateAction"
@@ -16,7 +16,7 @@ class NFCToogleRefreshCallback  : ActionCallback  {
         glanceId: GlanceId,
         parameters: ActionParameters
     ) {
-        val intent = Intent(context, ToogleWidgetReciver::class.java).apply {
+        val intent = Intent(context, ToggleWidgetReciver::class.java).apply {
             action = UPDATE_ACTION
         }
         context.sendBroadcast(intent)

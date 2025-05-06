@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "NFC toogle"
+rootProject.name = "NFC toggle"
 include(":app")
  

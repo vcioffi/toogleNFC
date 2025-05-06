@@ -1,4 +1,4 @@
-package com.cioffi.nfctoogle.utils
+package com.cioffi.nfctoggle.utils
 
 import androidx.compose.ui.graphics.Color
 import androidx.glance.unit.ColorProvider

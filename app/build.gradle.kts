@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.cioffi.nfctoogle"
+    namespace = "com.cioffi.nfctoggle"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.cioffi.nfctoogle"
+        applicationId = "com.cioffi.nfctoggle"
         minSdk = 33
         targetSdk = 33
         versionCode = 1

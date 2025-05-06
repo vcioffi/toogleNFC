@@ -1,4 +1,4 @@
-package com.cioffi.nfctoogle
+package com.cioffi.nfctoggle
 
 import android.content.Context
 import android.nfc.NfcAdapter
@@ -12,7 +12,7 @@ import androidx.glance.appwidget.state.updateAppWidgetState
 import androidx.glance.appwidget.updateAll
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.cioffi.nfctoogle.utils.makeStatusNotification
+import com.cioffi.nfctoggle.utils.makeStatusNotification
 
 
 private const val  TAG = "Test Worker"
@@ -49,12 +49,12 @@ private const val  TAG = "Test Worker"
 
     suspend fun updateWidget(nfcStatus: Boolean, context: Context) {
         // Iterate through all the available glance id's.
-        GlanceAppWidgetManager(context).getGlanceIds(ToogleNFCWidget::class.java).forEach { glanceId ->
+        GlanceAppWidgetManager(context).getGlanceIds(ToggleNFCWidget::class.java).forEach { glanceId ->
             updateAppWidgetState(context, glanceId) { prefs ->
                 prefs[booleanPreferencesKey("nfc_status")] = nfcStatus //new value
             }
         }
-        ToogleNFCWidget().updateAll(context)
+        ToggleNFCWidget().updateAll(context)
     }
 
 }

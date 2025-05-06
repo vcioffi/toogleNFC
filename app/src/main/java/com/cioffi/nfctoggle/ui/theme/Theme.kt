@@ -1,4 +1,4 @@
-package com.cioffi.nfctoogle.ui.theme
+package com.cioffi.nfctoggle.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
@@ -34,7 +34,7 @@ private val darkThemeColors = darkColors(
 )
 
 @Composable
-fun NFCToogleTheme(
+fun NFCToggleTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {

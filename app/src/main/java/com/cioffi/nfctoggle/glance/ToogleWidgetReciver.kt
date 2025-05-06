@@ -1,6 +1,6 @@
-package com.cioffi.nfctoogle.glance
+package com.cioffi.nfctoggle.glance
 
-import NFCToogleRefreshCallback
+import NFCToggleRefreshCallback
 import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
@@ -20,16 +20,16 @@ import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
-import com.cioffi.nfctoogle.CheckNFCWorker
-import com.cioffi.nfctoogle.ToogleNFCWidget
+import com.cioffi.nfctoggle.CheckNFCWorker
+import com.cioffi.nfctoggle.ToggleNFCWidget
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
 
-class ToogleWidgetReciver : GlanceAppWidgetReceiver() {
+class ToggleWidgetReciver : GlanceAppWidgetReceiver() {
 
-    override val glanceAppWidget: GlanceAppWidget = ToogleNFCWidget()
+    override val glanceAppWidget: GlanceAppWidget = ToggleNFCWidget()
     private val coroutineScope = MainScope()
 
 
@@ -42,7 +42,7 @@ class ToogleWidgetReciver : GlanceAppWidgetReceiver() {
 
             scheduleNFCWorker(context)
             val glanceId =
-                GlanceAppWidgetManager(context).getGlanceIds(ToogleNFCWidget::class.java).firstOrNull()
+                GlanceAppWidgetManager(context).getGlanceIds(ToggleNFCWidget::class.java).firstOrNull()
 
             glanceId?.let {
                 updateAppWidgetState(context, PreferencesGlanceStateDefinition, it) { pref ->
@@ -66,7 +66,7 @@ class ToogleWidgetReciver : GlanceAppWidgetReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
-        if (intent.action == NFCToogleRefreshCallback.UPDATE_ACTION) {
+        if (intent.action == NFCToggleRefreshCallback.UPDATE_ACTION) {
             observeData(context)
         }
     }

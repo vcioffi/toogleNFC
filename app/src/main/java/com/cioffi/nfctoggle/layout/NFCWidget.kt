@@ -1,7 +1,7 @@
-package com.cioffi.nfctoogle.layout;
+package com.cioffi.nfctoggle.layout;
 
 
-import NFCToogleRefreshCallback
+import NFCToggleRefreshCallback
 import android.content.Context
 import android.content.Intent
 import android.provider.Settings
@@ -12,7 +12,7 @@ import androidx.glance.ColorFilter
 import androidx.glance.GlanceModifier
 import androidx.glance.Image
 import androidx.glance.ImageProvider
-import com.cioffi.nfctoogle.R
+import com.cioffi.nfctoggle.R
 import androidx.glance.action.clickable
 import androidx.glance.appwidget.action.actionRunCallback
 import androidx.glance.background
@@ -27,8 +27,8 @@ import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequest
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
-import com.cioffi.nfctoogle.CheckNFCWorker
-import com.cioffi.nfctoogle.utils.UtilsMethods
+import com.cioffi.nfctoggle.CheckNFCWorker
+import com.cioffi.nfctoggle.utils.UtilsMethods
 import java.util.concurrent.TimeUnit
 
 @Composable
@@ -55,7 +55,7 @@ fun NFCWidget(nfcWidgetState: Boolean, context: Context) {
         Image(
             provider = ImageProvider(R.drawable.ic_refresh),
             contentDescription = "Refresh",
-            modifier = GlanceModifier.clickable(actionRunCallback<NFCToogleRefreshCallback>())
+            modifier = GlanceModifier.clickable(actionRunCallback<NFCToggleRefreshCallback>())
         )
 
         }

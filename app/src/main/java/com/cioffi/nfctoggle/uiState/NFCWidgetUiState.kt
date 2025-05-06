@@ -1,4 +1,4 @@
-package com.cioffi.nfctoogle.uiState
+package com.cioffi.nfctoggle.uiState
 
 import android.nfc.NfcAdapter
 import androidx.compose.runtime.getValue

@@ -1,4 +1,4 @@
-package com.cioffi.nfctoogle.ui.theme
+package com.cioffi.nfctoggle.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
